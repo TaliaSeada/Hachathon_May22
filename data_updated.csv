@@ -1,0 +1,36 @@
+,gas/electric,rent length,rooms,budget,bathrooms,master,storage,balcony/garden,electric/solar,AC,parking,SK,public transpo,loud neighborhood,construction to building,furnished,pets,smoke,livingroom,floor,floor num,accesiable,where,phone number,name
+0,3,6,4,3000,2.0,3,3,1,3.0,5,1,5.0,5,1,3,5,1.0,1,3,"First, Second",1,1,"City, Jerusalem ",1000000,person0
+1,3,12,4,3000,1.0,3,2,3,1.0,3,2,5.0,4,4,3,3,1.0,1,2,"Ground, First, Second, Third, Fourth",2,2,בקעה ירושלים,1000001,person1
+2,3,12,6,8000,2.0,2,2,5,3.0,5,1,1.0,5,4,3,4,5.0,4,4,"Ground, First, Second",1,4,City,1000002,person2
+3,4,12,3,4000,1.0,3,3,3,5.0,2,1,4.0,4,2,4,3,1.0,1,4,"Second, Third",4,3,City,1000003,person3
+4,1,24,3,4000,1.0,5,3,5,3.0,1,1,5.0,5,4,5,3,5.0,5,4,"Ground, First",1,4,Yeshuv,1000004,person4
+5,5,24,4,2000,1.5,1,2,2,1.0,2,2,5.0,5,3,3,4,1.0,1,2,"Third, Fourth",1,1,City,1000005,person5
+6,3,2,2,3000,1.0,1,1,2,1.0,3,1,5.0,5,2,2,5,1.0,5,1,"Ground, First",1,1,"City, Nachlaot/Jerusalem ",1000006,person6
+7,3,6,4,2000,1.5,2,4,2,3.0,4,1,5.0,4,2,3,4,1.0,1,2,"Ground, First",1,3,City,1000007,person7
+8,1,12,3,3000,1.0,5,2,1,1.0,1,1,1.0,4,3,4,4,2.0,3,2,"First, Second",3,3,City,1000008,person8
+9,3,12,5,3000,2.0,1,4,4,1.0,4,1,5.0,5,4,2,4,3.0,1,4,"Ground, First, Second",4,5,City,1000009,person9
+10,4,1,3,4000,1.0,3,3,4,4.0,2,1,1.0,5,5,4,3,1.0,1,3,"First, Second",4,2,"Yeshuv, City",1000010,person10
+11,4,12,3,2000,1.0,1,2,2,4.0,3,1,4.0,5,1,4,3,3.0,1,4,"First, Second",1,1,City,1000011,person11
+12,4,12,3,4000,1.5,3,3,5,5.0,4,4,5.0,4,5,5,3,1.0,1,4,"Ground, Second",2,3,"City, Jerusalem",1000012,person12
+13,4,12,4,2000,1.5,1,3,3,2.0,4,1,5.0,5,3,2,4,1.0,1,4,"First, Second",4,1,City,1000013,person13
+14,5,6,1,3000,1.0,1,1,1,3.0,4,1,5.0,5,1,1,5,1.0,3,4,"Ground, First",1,4,Anywhere in the center,1000014,person14
+15,3,12,3,4000,1.0,1,3,2,2.0,3,3,3.0,1,1,1,2,1.0,3,2,"Third, Fourth",3,1,City,1000015,person15
+16,4,12,3,3000,1.0,2,2,4,5.0,3,1,5.0,5,4,4,2,5.0,3,3,"Ground, First",3,2,City,1000016,person16
+17,3,12,3,6000,1.5,1,2,2,2.0,3,1,5.0,5,3,2,2,1.0,1,3,"Ground, First",3,2,City,1000017,person17
+18,5,12,3,4000,1.5,1,4,4,2.0,1,1,3.0,5,1,3,3,5.0,3,4,,4,3,"Katamon, Baka, Katamonim",1000018,person18
+19,3,12,2,3000,1.0,1,1,2,2.0,1,1,5.0,5,3,5,1,5.0,1,3,"Ground, First",3,1,City,1000019,person19
+20,3,1,1,3000,1.0,1,1,1,1.0,1,1,3.0,4,1,1,5,1.0,3,1,"First, Second",1,1,"Yeshuv, City",1000020,person20
+21,5,12,4,6000,1.5,1,4,3,2.0,4,1,3.0,5,1,3,3,1.0,1,3,"Ground, Second",1,1,City,1000021,person21
+22,4,12,3,4000,1.0,2,4,3,2.0,4,2,4.0,4,2,4,4,2.0,1,4,"Ground, First",2,3,City,1000022,person22
+23,4,12,5,4000,1.5,2,2,4,4.0,4,1,4.0,5,5,5,3,1.0,1,4,"Ground, First, Second, Third, Fourth",1,5,City,1000023,person23
+24,5,12,5,4000,2.0,4,4,5,4.0,5,1,3.0,5,5,5,1,2.0,2,4,"First, Second",4,3,"Yeshuv, City",1000024,person24
+25,3,1,3,4000,2.0,5,1,2,3.0,4,4,5.0,1,3,4,5,2.0,1,4,"Ground, First, Second",4,4,City,1000025,person25
+26,3,12,3,2000,2.0,4,4,5,3.0,3,2,5.0,5,2,4,2,1.0,4,4,"First, Second, Third, Fourth",2,2,City,1000026,person26
+27,3,12,3,6000,1.5,1,4,3,4.0,5,4,5.0,5,3,5,1,3.0,1,4,"Ground, Fourth",1,4,City,1000027,person27
+28,5,24,3,4000,2.0,1,1,1,5.0,1,1,1.0,5,1,3,1,5.0,1,1,"First, Second",1,1,City,1000028,person28
+29,3,12,4,3000,1.5,1,1,3,3.0,3,1,5.0,5,3,3,3,1.0,2,2,"Ground, First, Second, Third, Fourth",1,1,"City, Jerusalem ",1000029,person29
+30,5,2,1,3000,1.5,1,1,4,3.0,3,2,5.0,5,2,5,4,3.0,1,3,"Ground, First, Second, Third, Fourth",2,3,City,1000030,person30
+31,1,6,3,4000,2.0,5,3,5,5.0,5,1,5.0,5,5,5,5,1.0,1,5,"Ground, First, Second, Third, Fourth",1,5,City,1000031,person31
+32,3,12,3,4000,1.5,4,2,3,3.0,5,1,3.0,4,3,4,3,1.0,1,2,"First, Second",3,2,City,1000032,person32
+33,2,6,4,6000,1.0,2,2,3,3.0,4,1,5.0,4,3,4,4,1.0,1,4,"Ground, First, Second",4,4,City,1000033,person33
+34,5,12,4,7000,1.5,3,4,5,4.0,1,1,5.0,5,4,3,1,5.0,1,3,"Ground, First, Second, Third, Fourth",1,1,City,1000034,person34
