@@ -96,7 +96,18 @@ def score3(df, rows, name, cnt, score):
         cnt += 1
     return cnt, score
 
-def find_roommate(lookerrow):
+
+def find_roommate(lookerRow):
+    """
+    this function is the main function to implement the algorithm
+    it uses three different methods:
+    1. score1 - the regular calculation, non ultimatum features
+    2. score2 - ultimatum features
+    3. score3 - non ultimatum features but have more weight
+    :param lookerRow: the information of a person looking for a roommate
+    :return: a sorted list of pairs of the score and the relevant information
+    """
+    score_list = []
     for indexs, rows in data.iterrows():
         score = 0
         flag = 0
