@@ -4,6 +4,8 @@ import pandas as pd
 # read the data frame
 data = pd.read_csv(r'data_updated.csv')
 data.drop("Unnamed: 0", inplace=True, axis=1)
+
+
 # print(data.columns)
 
 
@@ -136,13 +138,9 @@ def sortByScore(score_list):
     :param score_list: list of scores and details
     :return: the result data frame
     """
-    # make into key value
-    # sort by value
-    # make into df
-    # return
     score_list.sort(key=lambda y: y[0])
     score_list.reverse()
-    score_list = pd.DataFrame(score_list, columns=['score', 'name', 'phone number'])
+    score_list = pd.DataFrame(score_list, columns=['score', 'name', 'phoneNumber'])
     score_list = score_list[score_list.score != 0]
     return score_list
 
@@ -195,4 +193,5 @@ def find_roommate(rowindex):
         score_list.append((score, rows['name'], rows['phone number']))
 
     score_list = sortByScore(score_list)
+    score_list = score_list[(score_list.phoneNumber != lookerRow['phone number'])]
     print(score_list)
