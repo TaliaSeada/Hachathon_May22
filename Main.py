@@ -12,13 +12,20 @@ if __name__ == '__main__':
     #
     # print(building.buildings.tail())
 
-    print(roomatesOrApartments.data.tail())
-    roomatesOrApartments.addRow(gas=None, length=None, rooms=None, budget=None, Bathroom=None, master=None,
-                                storage=None,
-                                balcony=None, electric=None, AC=None, parking=None, Sk=None, publictraspo=None,
-                                loud=None, construction=None,
-                                furnished=None, pets=None, smoke=None, livingroom=None, floor=None, floornum=None,
-                                accesiable=None, where=None,
-                                phonenumber=None, name=None)
+    # print(roomatesOrApartments.data.tail())
+    # roomatesOrApartments.addRow(gas=None, length=None, rooms=None, budget=None, Bathroom=None, master=None,
+    #                             storage=None,
+    #                             balcony=None, electric=None, AC=None, parking=None, Sk=None, publictraspo=None,
+    #                             loud=None, construction=None,
+    #                             furnished=None, pets=None, smoke=None, livingroom=None, floor=None, floornum=None,
+    #                             accesiable=None, where=None,
+    #                             phonenumber=None, name=None)
+    #
+    # print(roomatesOrApartments.data.tail())
 
-    print(roomatesOrApartments.data.tail())
+    print(roomatesOrApartments.data.head())
+
+    roomatesOrApartments.find_roommate(1)
+
+
+

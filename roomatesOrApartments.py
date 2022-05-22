@@ -4,7 +4,7 @@ import pandas as pd
 # read the data frame
 data = pd.read_csv(r'data_updated.csv')
 data.drop("Unnamed: 0", inplace=True, axis=1)
-print(data.columns)
+# print(data.columns)
 
 
 def addRow(gas=None, length=None, rooms=None, budget=None, Bathroom=None, master=None, storage=None,
@@ -97,7 +97,57 @@ def score3(df, rows, name, cnt, score):
     return cnt, score
 
 
-def find_roommate(lookerRow):
+def score4(df, rows, name, score, flag, cnt, bu, ba, wh):
+    if bu == 1:
+        if df[name] == None or rows[name] == None:
+            score += 1
+        elif np.abs(df[name] - rows[name]) <= 500:
+            score += 1
+        elif np.abs(df[name] - rows[name]) <= 750:
+            score += 0.5
+        else:
+            cnt += 1
+        return score, cnt
+
+    if ba == 1:
+        if df[name] == None or rows[name] == None:
+            score += 1
+        elif np.abs(df[name] - rows[name]) == 0:
+            score += 1
+        elif np.abs(df[name] - rows[name]) == 0.5:
+            score += 0.75
+        elif np.abs(df[name] - rows[name]) == 1:
+            score += 0.5
+        return score
+
+    if wh == 1:
+        if df[name] == None or rows[name] == None:
+            score += 1
+        elif df[name] == rows[name]:
+            score += 1
+        else:
+            flag = 1
+        return score, flag
+
+
+def sortByScore(score_list):
+    """
+    this function sort the result list and return the data frame
+    :param score_list: list of scores and details
+    :return: the result data frame
+    """
+    # make into key value
+    # sort by value
+    # make into df
+    # return
+    score_list.sort(key=lambda y: y[0])
+    score_list.reverse()
+    score_list = pd.DataFrame(score_list, columns=['score', 'name', 'phone number'])
+    score_list = score_list[score_list.score != 0]
+    return score_list
+
+
+def find_roommate(rowindex):
     """
     this function is the main function to implement the algorithm
     it uses three different methods:
@@ -113,24 +163,34 @@ def find_roommate(lookerRow):
         flag = 0
         cnt = 1
         # reg
-        names1 = ['gas/electric', 'master', 'storage', 'balcony/garden', 'electric/solar', 'parking', 'public transpo', 'loud neighborhood',
-                  'construction to building', 'furnished', 'livingroom' ]
-
+        names1 = ['gas/electric', 'master', 'storage', 'balcony/garden', 'electric/solar', 'parking', 'public transpo',
+                  'loud neighborhood', 'construction to building', 'furnished', 'livingroom', 'rooms']
         for i in range(len(names1)):
             score = score1(lookerRow, rows, names1[i], score)
 
         # flag
         names2 = ['pets', 'smoke', 'accesiable']
-
         for i in range(len(names2)):
-            score = score2(lookerRow, rows, names2[i], flag, score)
+            flag, score = score2(lookerRow, rows, names2[i], flag, score)
+
         # count
         names3 = ['SK', 'AC']
         for i in range(len(names3)):
-            score = score3(lookerRow, rows, names3[i], cnt, score)
+            cnt, score = score3(lookerRow, rows, names3[i], cnt, score)
+
+        names4 = ['budget', 'bathrooms', 'where']
+        score, cnt = score4(lookerRow, rows, names4[0], score, flag, cnt, bu=1, ba=None, wh=None)
+        score = score4(lookerRow, rows, names4[0], score, flag, cnt, bu=None, ba=1, wh=None)
+        score, flag = score4(lookerRow, rows, names4[0], score, flag, cnt, bu=None, ba=None, wh=1)
+
+        # not relevant columns for this calculation:
+        # rent lendth
 
         if flag == 1:
             score = 0
 
         score /= cnt
         score_list.append((score, rows['name'], rows['phone number']))
+
+    score_list = sortByScore(score_list)
+    print(score_list)
