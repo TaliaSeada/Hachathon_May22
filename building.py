@@ -26,21 +26,26 @@ def find_tenants(rowindex):
     for index, rows in roomatesOrApartments.data.iterrow():
         print()
 
-        #bool values
+        # bool values
         # electric/gas
-        # acsesiable
-        #loud
-        #construction
-        #elevator
-        #storage
-        #livingroom
-        #balcony/garden
-        #smoke
-        #pets
-        #city
-        #house/building
-        #furnished
-        #
+        # loud
+        # construction
+        # elevator
+        # storage
+        # livingroom
+        # balcony/garden
+        # smoke
+        # pets
+        # city
+        # house/building
+        # furnished
+        # Ac
+        # parking
 
+
+        #if non match flag=1
+        # smoke
+        # pets
+        # acsesiable 1 wat
 
 
