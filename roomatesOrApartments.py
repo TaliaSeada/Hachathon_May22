@@ -12,73 +12,114 @@ def addRow(gas=None, length=None, rooms=None, budget=None, Bathroom=None, master
            furnished=None, pets=None, smoke=None, livingroom=None, floor=None, floornum=None, accesiable=None,
            where=None,
            phonenumber=None, name=None):
+    """
+    this function adds a new row to the data frame (e.g a new looker)
+    :param relevant information
+    """
     data.loc[len(data.index)] = [gas, length, rooms, budget, Bathroom, master, storage, balcony, electric,
                                  AC, parking, Sk, publictraspo, loud, construction, furnished, pets, smoke, livingroom,
                                  floor,
                                  floornum, accesiable, where, phonenumber, name]
 
 
+def score1(df, rows, name, score):
+    """
+    this is the first function to update the score for the match
+    for the columns that are non ultimatum
+    :param df: the data frame we work on
+    :param rows: a specific row
+    :param name: name of column
+    :param score: to update
+    :return: the updated score
+    """
+    if df[name] == None or rows[name] == None:
+        score += 1
+    elif np.abs(df[name] - rows[name]) == 0:
+        score += 1
+    elif np.abs(df[name] - rows[name]) == 1:
+        score += 0.75
+    elif np.abs(df[name] - rows[name]) == 2:
+        score += 0.5
+    elif np.abs(df[name] - rows[name]) == 3:
+        score += 0.25
+    return score
+
+
+def score2(df, rows, name, flag, score):
+    """
+    this is the second function to update the score for the match
+    for the columns that are ultimatum
+    :param df: the data frame we work on
+    :param rows: a specific row
+    :param name: name of column
+    :param flag: if totally not a match turn on, will nullify the result
+    :param score: to update
+    :return: the updated score and updated flag
+    """
+    if df[name] == None or rows[name] == None:
+        score += 1
+    elif np.abs(df[name] - rows[name]) == 0:
+        score += 1
+    elif np.abs(df[name] - rows[name]) == 1:
+        score += 0.75
+    elif np.abs(df[name] - rows[name]) == 2:
+        score += 0.5
+    elif np.abs(df[name] - rows[name]) == 3:
+        score += 0.25
+    else:
+        flag = 1
+    return flag, score
+
+
+def score3(df, rows, name, cnt, score):
+    """
+    this is the third function to update the score for the match
+    for the columns that are non ultimatum, but important
+    :param df: the data frame we work on
+    :param rows: a specific row
+    :param name: name of column
+    :param cnt: if not a match increase by one, to normalize the result
+    :param score: to update
+    :return: the updated score and updated flag
+    """
+    if df[name] == None or rows[name] == None:
+        score += 1
+    elif np.abs(df[name] - rows[name]) == 0:
+        score += 1
+    elif np.abs(df[name] - rows[name]) == 1:
+        score += 0.75
+    elif np.abs(df[name] - rows[name]) == 2:
+        score += 0.5
+    elif np.abs(df[name] - rows[name]) == 3:
+        score += 0.25
+    else:
+        cnt += 1
+    return cnt, score
+
 def find_roommate(lookerrow):
     for indexs, rows in data.iterrows():
         score = 0
-        flag = 1
-        # gas
-        if np.abs(lookerrow['gas/electric'] - rows['gas/electric']) == 0:
-            score += 1
-        elif np.abs(lookerrow['gas/electric'] - rows['gas/electric']) == 1:
-            score += 0.75
-        elif np.abs(lookerrow['gas/electric'] - rows['gas/electric']) == 2:
-            score += 0.5
-        elif np.abs(lookerrow['gas/electric'] - rows['gas/electric']) == 3:
-            score += 0.25
+        flag = 0
+        cnt = 1
+        # reg
+        names1 = ['gas/electric', 'master', 'storage', 'balcony/garden', 'electric/solar', 'parking', 'public transpo', 'loud neighborhood',
+                  'construction to building', 'furnished', 'livingroom' ]
 
-        #master
-        if np.abs(lookerrow['master'] - rows['master']) == 0:
-            score += 1
-        elif np.abs(lookerrow['master'] - rows['master']) == 1:
-            score += 0.75
-        elif np.abs(lookerrow['master'] - rows['master']) == 2:
-            score += 0.5
-        elif np.abs(lookerrow['master'] - rows['master']) == 3:
-            score += 0.25
+        for i in range(len(names1)):
+            score = score1(lookerRow, rows, names1[i], score)
 
-        #storage
-        if np.abs(lookerrow['storage'] - rows['storage']) == 0:
-            score += 1
-        elif np.abs(lookerrow['storage'] - rows['storage']) == 1:
-            score += 0.75
-        elif np.abs(lookerrow['storage'] - rows['storage']) == 2:
-            score += 0.5
-        elif np.abs(lookerrow['storage'] - rows['storage']) == 3:
-            score += 0.25
+        # flag
+        names2 = ['pets', 'smoke', 'accesiable']
 
-        #balcony/garden
-        if np.abs(lookerrow['balcony/garden'] - rows['balcony/garden']) == 0:
-            score += 1
-        elif np.abs(lookerrow['balcony/garden'] - rows['balcony/garden']) == 1:
-            score += 0.75
-        elif np.abs(lookerrow['balcony/garden'] - rows['balcony/garden']) == 2:
-            score += 0.5
-        elif np.abs(lookerrow['balcony/garden'] - rows['balcony/garden']) == 3:
-            score += 0.25
+        for i in range(len(names2)):
+            score = score2(lookerRow, rows, names2[i], flag, score)
+        # count
+        names3 = ['SK', 'AC']
+        for i in range(len(names3)):
+            score = score3(lookerRow, rows, names3[i], cnt, score)
 
+        if flag == 1:
+            score = 0
 
-        #accesible
-        if np.abs(lookerrow['accesiable'] - rows['accesiable']) == 0:
-            score += 1
-        elif np.abs(lookerrow['accesiable'] - rows['accesiable']) == 1:
-            score += 0.75
-        elif np.abs(lookerrow['accesiable'] - rows['accesiable']) == 2:
-            score += 0.5
-        elif np.abs(lookerrow['accesiable'] - rows['accesiable']) == 3:
-            score += 0.25
-
-        #electric/solar
-        if np.abs(lookerrow['accesiable'] - rows['accesiable']) == 0:
-            score += 1
-        elif np.abs(lookerrow['accesiable'] - rows['accesiable']) == 1:
-            score += 0.75
-        elif np.abs(lookerrow['accesiable'] - rows['accesiable']) == 2:
-            score += 0.5
-        elif np.abs(lookerrow['accesiable'] - rows['accesiable']) == 3:
-            score += 0.25
+        score /= cnt
+        score_list.append((score, rows['name'], rows['phone number']))
