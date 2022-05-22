@@ -1,5 +1,6 @@
 # we will need a class for the buildings and for the people looking for roommates and apartments
-
+import pandas as pd
+import numpy as np
 import building
 import roomatesOrApartments
 

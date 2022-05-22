@@ -157,7 +157,9 @@ def find_roommate(rowindex):
     :param lookerRow: the information of a person looking for a roommate
     :return: a sorted list of pairs of the score and the relevant information
     """
+    lookerRow = data.iloc[rowindex]
     score_list = []
+
     for indexs, rows in data.iterrows():
         score = 0
         flag = 0
