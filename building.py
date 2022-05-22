@@ -4,9 +4,11 @@ import pandas as pd
 # read the data frame
 import roomatesOrApartments
 
+# TODO look for tenants
+# TODO delete function
+
 buildings = pd.read_csv(r'building_updated.csv')
 buildings.drop("Unnamed: 0", inplace=True, axis=1)
-# print(buildings.columns)
 
 
 # add row function
@@ -18,8 +20,9 @@ def addRow(gas=None, livingroom=None, bedroom=None, bathroom=None, city=None, wh
                                            furnished, AC, accesiable, elevator, parking, pets, smoking, price, length,
                                            phone, name]
 
+
 def find_tenants(rowindex):
-    apartment_row= buildings.iloc[rowindex]
+    apartment_row = buildings.iloc[rowindex]
     for index, rows in roomatesOrApartments.data.iterrow():
         print()
 

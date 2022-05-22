@@ -1,12 +1,12 @@
 import numpy as np
 import pandas as pd
 
+# TODO look for apartment
+# TODO delete function
+
 # read the data frame
 data = pd.read_csv(r'data_updated.csv')
 data.drop("Unnamed: 0", inplace=True, axis=1)
-
-
-# print(data.columns)
 
 
 def addRow(gas=None, length=None, rooms=None, budget=None, Bathroom=None, master=None, storage=None,
@@ -152,7 +152,7 @@ def find_roommate(rowindex):
     1. score1 - the regular calculation, non ultimatum features
     2. score2 - ultimatum features
     3. score3 - non ultimatum features but have more weight
-    :param lookerRow: the information of a person looking for a roommate
+    :param rowindex: the information of a person looking for a roommate
     :return: a sorted list of pairs of the score and the relevant information
     """
     lookerRow = data.iloc[rowindex]
