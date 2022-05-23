@@ -1,4 +1,4 @@
-gas/electric,livingroom,bedrooms,bathrooms,city?,where,languages,house/building,storage?,furnished?,AC,accessible?,Elevator,parking,pets,smoke,price,length of rent,public transpo,near construction,loud neighborhood
+gas/electric,livingroom,bedrooms,bathrooms,city,where,languages,house/building,storage?,furnished?,AC,accessible?,Elevator,parking,pets,smoke,price,rent length,public transpo,near construction,loud neighborhood
 1,1,2,1,1,Ariel,EN,0,1,1,1,0,0,1,0,0,3000,1,1,0,1
 0,1,2,1,1,Ariel,AM,1,0,1,1,1,1,0,0,0,3000,1,1,0,1
 1,1,2,1,1,Ariel,FR,1,1,1,1,1,1,0,0,0,3000,1,1,0,1
