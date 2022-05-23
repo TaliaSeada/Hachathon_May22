@@ -7,21 +7,22 @@ import pandas as pd
 # read the data frame
 data = pd.read_csv(r'data_updated.csv')
 data.drop("Unnamed: 0", inplace=True, axis=1)
+# print(data.columns)
 
 
-def addRow(gas=None, length=None, rooms=None, budget=None, Bathroom=None, master=None, storage=None,
+
+def addRow(gas=None, length=None, rooms=None, price=None, Bathroom=None, master=None, storage=None,
            balcony=None, electric=None, AC=None, parking=None, Sk=None, publictraspo=None, loud=None, construction=None,
            furnished=None, pets=None, smoke=None, livingroom=None, floor=None, floornum=None, accesiable=None,
-           where=None,
+           where=None,city=None,
            phonenumber=None, name=None):
     """
     this function adds a new row to the data frame (e.g a new looker)
     :param relevant information
     """
-    data.loc[len(data.index)] = [gas, length, rooms, budget, Bathroom, master, storage, balcony, electric,
+    data.loc[len(data.index)] = [gas, length, rooms, price, Bathroom, master, storage, balcony, electric,
                                  AC, parking, Sk, publictraspo, loud, construction, furnished, pets, smoke, livingroom,
-                                 floor,
-                                 floornum, accesiable, where, phonenumber, name]
+                                 floor,floornum, accesiable, where,city, phonenumber, name]
 
 
 def score1(df, rows, name, score):
@@ -141,7 +142,7 @@ def sortByScore(score_list):
     score_list.sort(key=lambda y: y[0])
     score_list.reverse()
     score_list = pd.DataFrame(score_list, columns=['score', 'name', 'phoneNumber'])
-    score_list = score_list[score_list.score != 0]
+    score_list = score_list[score_list.score > 50.0]
     return score_list
 
 
@@ -163,13 +164,13 @@ def find_roommate(rowindex):
         flag = 0
         cnt = 1
         # reg
-        names1 = ['gas/electric', 'master', 'storage', 'balcony/garden', 'electric/solar', 'parking', 'public transpo',
-                  'loud neighborhood', 'construction to building', 'furnished', 'livingroom', 'rooms']
+        names1 = ['gas/electric', 'master', 'storage?', 'balcony/garden', 'electric/solar', 'parking', 'public transpo',
+                  'loud neighborhood', 'construction to building', 'furnished?', 'livingroom', 'bedrooms']
         for i in range(len(names1)):
             score = score1(lookerRow, rows, names1[i], score)
 
         # flag
-        names2 = ['pets', 'smoke', 'accesiable']
+        names2 = ['pets', 'smoke', 'accessible?']
         for i in range(len(names2)):
             flag, score = score2(lookerRow, rows, names2[i], flag, score)
 
@@ -178,18 +179,18 @@ def find_roommate(rowindex):
         for i in range(len(names3)):
             cnt, score = score3(lookerRow, rows, names3[i], cnt, score)
 
-        names4 = ['budget', 'bathrooms', 'where']
+        names4 = ['price', 'bathrooms', 'where', 'city']
         score, cnt = score4(lookerRow, rows, names4[0], score, flag, cnt, bu=1, ba=None, wh=None)
-        score = score4(lookerRow, rows, names4[0], score, flag, cnt, bu=None, ba=1, wh=None)
-        score, flag = score4(lookerRow, rows, names4[0], score, flag, cnt, bu=None, ba=None, wh=1)
+        score = score4(lookerRow, rows, names4[1], score, flag, cnt, bu=None, ba=1, wh=None)
+        score, flag = score4(lookerRow, rows, names4[2], score, flag, cnt, bu=None, ba=None, wh=1)
+        score, flag = score4(lookerRow, rows, names4[3], score, flag, cnt, bu=None, ba=None, wh=1)
 
-        # not relevant columns for this calculation:
-        # rent lendth
 
         if flag == 1:
             score = 0
 
         score /= cnt
+        score=(score/21)*100
         score_list.append((score, rows['name'], rows['phone number']))
 
     score_list = sortByScore(score_list)
