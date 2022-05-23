@@ -9,16 +9,17 @@ import roomatesOrApartments
 
 buildings = pd.read_csv(r'building_updated.csv')
 buildings.drop("Unnamed: 0", inplace=True, axis=1)
+print(buildings.columns)
 
 
 # add row function
-def addRow(gas=None, livingroom=None, bedroom=None, bathroom=None, city=None, where=None, lang=None, house=None,
+def addRow(gas=None, livingroom=None, bedrooms=None, bathrooms=None, city=None, where=None, lang=None, house=None,
            storage=None, furnished=None, AC=None, accesiable=None, elevator=None, parking=None, pets=None, smoking=None,
-           price=None, length=None, phone=None, name=None):
+           price=None, length=None, publictranspo=None, nearconstruction=None, loud=None, phone=None, name=None):
 
-    buildings.loc[len(buildings.index)] = [gas, livingroom, bedroom, bathroom, city, where, lang, house, storage,
+    buildings.loc[len(buildings.index)] = [gas, livingroom, bedrooms, bathrooms, city, where, lang, house, storage,
                                            furnished, AC, accesiable, elevator, parking, pets, smoking, price, length,
-                                           phone, name]
+                                           publictranspo, nearconstruction,loud, phone, name]
 
 
 
@@ -124,30 +125,28 @@ def sortByScore(score_list):
 
 def find_tenants(rowindex):
 
-
-
     score_list=[]
     apartment_row = buildings.iloc[rowindex]
     print(buildings.columns)
-    for index, rows in roomatesOrApartments.data.iterrow():
+    for index, rows in roomatesOrApartments.data.iterrows():
         score = 0
         flag = 0
         cnt = 1
 
-        names1 = ['gas/electric','big livingroom?','city?', 'storage?','furnished?', 'Air_Condition?' ,'Elevator','parking','bedrooms'] #near construction, #loud neighborhood
+        names1 = ['gas/electric','livingroom','city', 'storage?','furnished?', 'AC' ,'Elevator','parking','bedrooms', 'near construction', 'loud neighborhood']
         for i in range(len(names1)):
             score, cnt = score1(apartment_row, rows, names1[i], score, cnt)
 
-        names2=['Wheelchair_accessible?', 'Pets_allowed','Smoking_allowed' ]
+        names2=['accessible?', 'pets','smoke' ]
         for i in range(len(names2)):
             score, flag = score2(apartment_row, rows, names2[i], score, flag)
 
 
-        names3=['city?','where','length of rent']
+        names3=['city','where','rent length']
         for i in range(len(names3)):
             score, cnt = score3(apartment_row, rows, names3[i], score, cnt)
 
-        names4=['bathroom','price']
+        names4=['bathrooms','price']
         score = score4(apartment_row, rows, names4[0], score, cnt, bu=None, ba=1)
         score, cnt = score4(apartment_row, rows, names4[1], score, cnt, bu=1, ba=None)
 
@@ -159,9 +158,3 @@ def find_tenants(rowindex):
 
     score_list = sortByScore(score_list)
     print(score_list)
-
-
-
-
-
-find_tenants(1)
