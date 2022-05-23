@@ -9,7 +9,7 @@ import roomatesOrApartments
 
 buildings = pd.read_csv(r'building_updated.csv')
 buildings.drop("Unnamed: 0", inplace=True, axis=1)
-print(buildings.columns)
+
 
 
 # add row function

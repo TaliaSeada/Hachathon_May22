@@ -5,13 +5,15 @@ import building
 import roomatesOrApartments
 
 if __name__ == '_main_':
-    # roomatesOrApartments.addRow(gas=3, length=12, rooms=3, price=4000, Bathroom=3, master=2,
-    #                             storage=5,
-    #                             balcony=3, electric=None, AC=None, parking=1, Sk=5, publictraspo=4,
-    #                             loud=None, construction=None,
-    #                             furnished=None, pets=5, smoke=1, livingroom=None, floor=None, floornum=None,
-    #                             accesiable=1, where=None, city=1,
-    #                             phonenumber='0123456789', name='Hello World')
+    roomatesOrApartments.addRow(gas=3, length=12, rooms=3, price=4000, Bathroom=3, master=2,
+                                storage=5,
+                                balcony=3, electric=None, AC=None, parking=1, Sk=5, publictraspo=4,
+                                loud=None, construction=None,
+                                furnished=None, pets=5, smoke=1, livingroom=None, floor=None, floornum=None,
+                                accesiable=1, where=None, city=1,
+                                phonenumber='0123456789', name='Hello World')
+
+    print(roomatesOrApartments.data.head())
 
     roomatesOrApartments.find_roommate(555)
 
