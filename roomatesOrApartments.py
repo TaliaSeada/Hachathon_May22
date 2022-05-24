@@ -28,6 +28,8 @@ for index, row in data.iterrows():
 data['where'] = w
 data = data.dropna(axis=0, how='any')
 personal_info = data[['index', 'phone number', 'name']]
+
+
 X =data.copy()
 X.drop(['index', 'phone number', 'name'], inplace=True, axis=1)
 
@@ -112,7 +114,7 @@ def score(row1, row2):
 def main():
 
 
-    addRow(length=6, rooms=4, price=8000, age=22, gender=1, genderOfRoomMate=1, storage=3, balcony=3,
+    addRow(length=3, rooms=2, price=4000, age=22, gender=0, genderOfRoomMate=-1, storage=3, balcony=3,
            AC=4, parking=2, Sk=4, publictraspo=4, furnished=5, pets=1, smoke=1, livingroom=4,
            accesiable=3, where=0, city=3, phonenumber="0500000000", name="abcd")
 
